@@ -1,0 +1,6 @@
+{
+    "name": "nikolaypismenkov/seeder",
+    "require": {
+        "symfony/dotenv": "^5.1"
+    }
+}
