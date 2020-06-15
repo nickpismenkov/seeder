@@ -3,3 +3,4 @@ vendor
 .idea
 composer.lock
 dump.csv
+.DS_Store
