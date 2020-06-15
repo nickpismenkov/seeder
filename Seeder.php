@@ -74,15 +74,27 @@ class Seeder
                     $stmt_dts = $dbh->prepare('DELETE FROM transactions WHERE user_id = ?');
                     $stmt_dts->execute([$user['id']]);
 
-                    $stmt_u = $dbh->prepare('INSERT INTO users (name, password, email) VALUES (:name, :password, :email)');
+                    $stmt_u = $dbh->prepare('INSERT INTO users (name, password, email, premium_status_id) VALUES (:name, :password, :email, :premium_status_id)');
 
                     $stmt_u->bindParam(':name', $name);
                     $stmt_u->bindParam(':password', $password);
                     $stmt_u->bindParam(':email', $email);
+                    $stmt_u->bindParam(':premium_status_id', $premium_status_id);
 
                     $name = trim($params[0]);
                     $password = trim($params[1]);
                     $email = trim($params[2]);
+                    if ($params[13] < 5000) {
+                        $premium_status_id = 1;
+                    } else if ($params[13] >= 5000 && $params[13] < 25000) {
+                        $premium_status_id = 2;
+                    } else if ($params[13] >= 25000 && $params[13] < 50000) {
+                        $premium_status_id = 3;
+                    } else if ($params[13] >= 50000 && $params[13] < 100000) {
+                        $premium_status_id = 4;
+                    } else if ($params[13] >= 100000) {
+                        $premium_status_id = 5;
+                    }
 
                     $stmt_u->execute();
 
@@ -104,7 +116,7 @@ class Seeder
                     $stmt_t->execute();
 
                     $uniq_id = uniqid();
-                    $type = 'INFLOW_CREATE';
+                    $type = 'INFLOW_PAYMENT';
                     $amount = $params[13];
                     $comment = 'Списанные средства';
 
@@ -125,15 +137,27 @@ class Seeder
                     $stmt_dts = $dbh->prepare('DELETE FROM transactions WHERE user_id = ?');
                     $stmt_dts->execute([$user['id']]);
 
-                    $stmt_u = $dbh->prepare('INSERT INTO users (name, password, email) VALUES (:name, :password, :email)');
+                    $stmt_u = $dbh->prepare('INSERT INTO users (name, password, email, premium_status_id) VALUES (:name, :password, :email, :premium_status_id)');
 
                     $stmt_u->bindParam(':name', $name);
                     $stmt_u->bindParam(':password', $password);
                     $stmt_u->bindParam(':email', $email);
+                    $stmt_u->bindParam(':premium_status_id', $premium_status_id);
 
                     $name = trim($params[0]);
                     $password = trim($params[1]);
                     $email = trim($params[2]);
+                    if ($params[13] < 5000) {
+                        $premium_status_id = 1;
+                    } else if ($params[13] >= 5000 && $params[13] < 25000) {
+                        $premium_status_id = 2;
+                    } else if ($params[13] >= 25000 && $params[13] < 50000) {
+                        $premium_status_id = 3;
+                    } else if ($params[13] >= 50000 && $params[13] < 100000) {
+                        $premium_status_id = 4;
+                    } else if ($params[13] >= 100000) {
+                        $premium_status_id = 5;
+                    }
 
                     $stmt_u->execute();
 
@@ -155,7 +179,7 @@ class Seeder
                     $stmt_t->execute();
 
                     $uniq_id = uniqid();
-                    $type = 'INFLOW_CREATE';
+                    $type = 'INFLOW_PAYMENT';
                     $amount = $params[13];
                     $comment = 'Списанные средства';
 
@@ -171,15 +195,27 @@ class Seeder
                     echo $user_id .' | User '. $name .' migrated'."\n";
                 }
             } else {
-                $stmt_u = $dbh->prepare('INSERT INTO users (name, password, email) VALUES (:name, :password, :email)');
+                $stmt_u = $dbh->prepare('INSERT INTO users (name, password, email, premium_status_id) VALUES (:name, :password, :email, :premium_status_id)');
 
                 $stmt_u->bindParam(':name', $name);
                 $stmt_u->bindParam(':password', $password);
                 $stmt_u->bindParam(':email', $email);
+                $stmt_u->bindParam(':premium_status_id', $premium_status_id);
 
                 $name = trim($params[0]);
                 $password = trim($params[1]);
                 $email = trim($params[2]);
+                if ($params[13] < 5000) {
+                    $premium_status_id = 1;
+                } else if ($params[13] >= 5000 && $params[13] < 25000) {
+                    $premium_status_id = 2;
+                } else if ($params[13] >= 25000 && $params[13] < 50000) {
+                    $premium_status_id = 3;
+                } else if ($params[13] >= 50000 && $params[13] < 100000) {
+                    $premium_status_id = 4;
+                } else if ($params[13] >= 100000) {
+                    $premium_status_id = 5;
+                }
 
                 $stmt_u->execute();
 
@@ -201,7 +237,7 @@ class Seeder
                 $stmt_t->execute();
 
                 $uniq_id = uniqid();
-                $type = 'INFLOW_CREATE';
+                $type = 'INFLOW_PAYMENT';
                 $amount = $params[13];
                 $comment = 'Списанные средства';
 
